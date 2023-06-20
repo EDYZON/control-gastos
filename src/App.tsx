@@ -16,34 +16,49 @@ function App() {
   
   const generarId = () =>{
     const random = Math.random().toString(36).substr(2)
-    const fecha  = Date.now().toString(36);
-    return random * fecha;
+    return random;
   }
 
   useEffect(() => {
       if(Object.keys(gastoEditar).length > 0)
       {
-      console.log('gasto editar tiene algo')
+        handleNuevoGasto();
       }
   }, [gastoEditar])
   
 
   const handleNuevoGasto = ()=>{
     setModal(true)
+    setGastoEditar({})
     setTimeout(()=>{
       setAnimarModal(true)
     },500)
   }
 
+
+
   const guardarGasto = gasto =>{
-    gasto.id = generarId();
-    gasto.fecha = Date.now();
-    setGastos([...gastos,gasto])
+    if(gasto.id){
+      //actualizar
+      const gastosActualizados = gastos.map(gastoState => gastoState.id === gasto.id ? gasto: gastoState)
+      setGastos(gastosActualizados)
+      setGastoEditar({})
+    }else{
+      //nuevo gasto
+      gasto.id = generarId();
+      gasto.fecha = Date.now();
+      setGastos([...gastos,gasto])
+    }
+
     setAnimarModal(false)
     setTimeout(()=>{
       setModal(false)
     },500)
-    // guardarGasto    = {guardarGasto}
+  }
+
+  const eliminarGasto = id =>{
+    const gastosActualizados = gastos.filter(gasto => gasto.id !== id)
+    setGastos(gastosActualizados)
   }
 
   return (
@@ -58,9 +73,10 @@ function App() {
       {isValidPresupuesto &&(
         <>
         <main>
-         <ListadoGastos
+         <ListadoGastos 
            gastos = {gastos} 
            setGastoEditar = {setGastoEditar}
+           eliminarGasto = {eliminarGasto}
          />
         </main>
         <div className='nuevo-gasto'>
@@ -78,6 +94,8 @@ function App() {
                   animarModal = {animarModal}
                   setAnimarModal={setAnimarModal}
                   guardarGasto= { guardarGasto }
+                  gastoEditar = { gastoEditar }
+                  setGastoEditar = { setGastoEditar }
                   />
       }
 
