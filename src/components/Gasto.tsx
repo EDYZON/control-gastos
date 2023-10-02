@@ -15,7 +15,11 @@ import IconoGastos from '../img/icono_gastos.svg'
 import IconoOcio from '../img/icono_ocio.svg'
 import IconoSalud from '../img/icono_salud.svg'
 import IconoSuscripciones from '../img/icono_suscripciones.svg'
+<<<<<<< HEAD
 const Gasto = ({gasto,setGastoEditar})=> {
+=======
+const Gasto = ({gasto,setGastoEditar,eliminarGasto})=> {
+>>>>>>> fdad82af2f8aa7f35331fadc0119fa9cbb8ece11
     const { categoria, nombre, cantidad, id, fecha } = gasto;
     const diccionarioIconos = {
       ahorro: IconoAhorro,
@@ -36,7 +40,9 @@ const Gasto = ({gasto,setGastoEditar})=> {
       )
       const trailingActions = ()=>(
        <TrailingActions>
-          <SwipeAction onClick={()=> console.log('eliminar...')}>
+          <SwipeAction onClick={()=> eliminarGasto(id)}
+          destructive = {true}
+          >
              Eliminar
           </SwipeAction>
        </TrailingActions>
