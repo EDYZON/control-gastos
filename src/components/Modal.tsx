@@ -1,18 +1,37 @@
-import { useState  } from 'react'
+import { useState,useEffect} from 'react'
 import CerraBtn from '../img/cerrar.svg'
 import { Mensaje } from './Mensaje'
 
-const Modal = ({setModal,animarModal,setAnimarModal,guardarGasto}) =>{
+const Modal = ({
+  setModal,
+  animarModal,
+  setAnimarModal,
+  guardarGasto,
+  gastoEditar}) =>{
     
     const [mensaje,setMensaje] = useState('')
     const [nombre,setNombre] = useState('')
     const [cantidad,setCantidad] = useState('')
     const [categoria,setCategoria] = useState('')
+    const [id,setId] = useState('')
+    const [fecha,setFecha] = useState('')
+
+    useEffect(() => {
+      if(Object.keys(gastoEditar).length>0){
+        setNombre(gastoEditar.nombre)
+        setCantidad(gastoEditar.cantidad)
+        setCategoria(gastoEditar.categoria)
+        setId(gastoEditar.id)
+        setFecha(gastoEditar.fecha)
+      }
+    }, [])
+    
 
     const ocultarModal = ()=>{
+      setAnimarModal(false)
+      setTimeout(() => {
         setModal(false)
-        setAnimarModal(false)
-        Modal.Animate(3000);
+      }, 500);    
     }  
 
     const handleSubmit = e =>{
@@ -24,7 +43,7 @@ const Modal = ({setModal,animarModal,setAnimarModal,guardarGasto}) =>{
         },3000)
         return
       }
-      guardarGasto({nombre, cantidad, categoria})
+      guardarGasto({nombre, cantidad, categoria,id, fecha})
       
     }
 
@@ -40,7 +59,7 @@ const Modal = ({setModal,animarModal,setAnimarModal,guardarGasto}) =>{
                 <form 
                 onSubmit={handleSubmit}
                 className = {`formulario ${animarModal ? "animar":'cerrar'}`}>
-                    <legend>Nuevo Gasto</legend>    
+                    <legend>{gastoEditar.nombre?"Editar Gasto":"Nuevo Gasto"}</legend>    
                     {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}    
                     <div className='campo'>
                         <label htmlFor='nombre'>Nombre Gasto</label>
@@ -82,7 +101,7 @@ const Modal = ({setModal,animarModal,setAnimarModal,guardarGasto}) =>{
                         </select>
                     </div>
                     <input type='submit' 
-                    value='Añadir Gasto'
+                    value={gastoEditar.nombre?"Guardar Cambios":"Añadir Gasto"}
                     />
 
                 </form>

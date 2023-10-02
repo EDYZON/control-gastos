@@ -6,45 +6,57 @@ import ListadoGastos from './components/ListadoGastos'
 //import generarId from './helpers/inde'
 
 function App() {
+  const [gastos,setGastos] = useState([])
   const [presupuesto, setPresupuesto] = useState(0)
   const [isValidPresupuesto,setIsValidPresupuesto] = useState(false)
   const [modal,setModal] = useState(false)
   const [animarModal,setAnimarModal] = useState(false)
   const [gastoEditar,setGastoEditar] = useState({})
 
-  const [gastos,setGastos] = useState([])
-  
-  const generarId = () =>{
-    const random = Math.random().toString(36).substr(2)
-    const fecha  = Date.now().toString(36);
-    return random * fecha;
+  const generarId = () => {
+    const random:any = Math.random().toString(36)
+    return random;
   }
-
-  useEffect(() => {
-      if(Object.keys(gastoEditar).length > 0)
-      {
-      console.log('gasto editar tiene algo')
-      }
-  }, [gastoEditar])
-  
 
   const handleNuevoGasto = ()=>{
     setModal(true)
+    setGastoEditar({})
     setTimeout(()=>{
       setAnimarModal(true)
     },500)
   }
 
   const guardarGasto = gasto =>{
-    gasto.id = generarId();
-    gasto.fecha = Date.now();
-    setGastos([...gastos,gasto])
+    if(gasto.id){
+      //Actualizar
+      const gastosActualizados = gastos.map(gastoState => gastoState.id === gasto.id?gasto:gastoState);
+      setGastos(gastosActualizados);
+    }else{
+      //Nuevo gasto
+      gasto.id = generarId();
+      gasto.fecha = Date.now();
+      setGastos([...gastos, gasto])
+    }
+
     setAnimarModal(false)
     setTimeout(()=>{
       setModal(false)
     },500)
-    // guardarGasto    = {guardarGasto}
   }
+
+  useEffect(() => {
+      if(Object.keys(gastoEditar).length > 0){
+        setModal(true)
+        setTimeout(()=>{
+          setAnimarModal(true)
+        },500)
+      }
+  }, [gastoEditar])
+  
+
+
+
+
 
   return (
     <div className={modal?'fijar':''}>
@@ -78,6 +90,7 @@ function App() {
                   animarModal = {animarModal}
                   setAnimarModal={setAnimarModal}
                   guardarGasto= { guardarGasto }
+                  gastoEditar={gastoEditar}
                   />
       }
 
