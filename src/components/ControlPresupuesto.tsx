@@ -13,8 +13,6 @@ const ControlPresupuesto = ({gastos,presupuesto}) => {
       const totalDisponible = presupuesto - totalGastado
       
       const nuevoPorcentaje = ((presupuesto - totalDisponible) / presupuesto)*100;
-     // console.log(gastos)
-      
 
       setDisponible(totalDisponible)
       setGastado(totalGastado)
@@ -35,9 +33,11 @@ const ControlPresupuesto = ({gastos,presupuesto}) => {
             <CircularProgressbar 
              styles={buildStyles({
                pathColor:'#3B82F6',
-               trailColor:'#F5F5F5'
+               trailColor:'#F5F5F5',
+               textColor:'#3B82F6'
              })}
              value={porcentaje}
+             text={`${Math.round(porcentaje)} %`}
             />
          </div>
          <div className='contenido-presupuesto'>
