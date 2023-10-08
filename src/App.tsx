@@ -7,20 +7,14 @@ import ListadoGastos from './components/ListadoGastos'
 
 function App() {
   const [gastos,setGastos] = useState([])
-  const [presupuesto, setPresupuesto] = useState(0)
+  const [presupuesto, setPresupuesto] = useState(
+    Number(localStorage.getItem('presupuesto')) ?? 0
+  )
   const [isValidPresupuesto,setIsValidPresupuesto] = useState(false)
   const [modal,setModal] = useState(false)
   const [animarModal,setAnimarModal] = useState(false)
   const [gastoEditar,setGastoEditar] = useState({})
 
-<<<<<<< HEAD
-  const generarId = () => {
-    const random:any = Math.random().toString(36)
-    return random;
-  }
-
-=======
-  const [gastos,setGastos] = useState([])
   
   const generarId = () =>{
     const random = Math.random().toString(36).substr(2)
@@ -33,9 +27,18 @@ function App() {
         handleNuevoGasto();
       }
   }, [gastoEditar])
-  
 
->>>>>>> fdad82af2f8aa7f35331fadc0119fa9cbb8ece11
+  useEffect(()=>{
+   localStorage.setItem('presupuesto',presupuesto ?? 0);
+  },[presupuesto])
+  
+  useEffect(()=>{
+   const presupuestoLS = Number(localStorage.getItem('presupuesto') ?? 0); 
+   if(presupuestoLS > 0){
+     setIsValidPresupuesto(true);
+   }
+  },[]);
+
   const handleNuevoGasto = ()=>{
     setModal(true)
     setGastoEditar({})
@@ -48,16 +51,6 @@ function App() {
 
   const guardarGasto = gasto =>{
     if(gasto.id){
-<<<<<<< HEAD
-      //Actualizar
-      const gastosActualizados = gastos.map(gastoState => gastoState.id === gasto.id?gasto:gastoState);
-      setGastos(gastosActualizados);
-    }else{
-      //Nuevo gasto
-      gasto.id = generarId();
-      gasto.fecha = Date.now();
-      setGastos([...gastos, gasto])
-=======
       //actualizar
       const gastosActualizados = gastos.map(gastoState => gastoState.id === gasto.id ? gasto: gastoState)
       setGastos(gastosActualizados)
@@ -67,21 +60,17 @@ function App() {
       gasto.id = generarId();
       gasto.fecha = Date.now();
       setGastos([...gastos,gasto])
->>>>>>> fdad82af2f8aa7f35331fadc0119fa9cbb8ece11
     }
 
     setAnimarModal(false)
     setTimeout(()=>{
       setModal(false)
     },500)
-<<<<<<< HEAD
-=======
   }
 
   const eliminarGasto = id =>{
     const gastosActualizados = gastos.filter(gasto => gasto.id !== id)
     setGastos(gastosActualizados)
->>>>>>> fdad82af2f8aa7f35331fadc0119fa9cbb8ece11
   }
 
   useEffect(() => {
@@ -131,12 +120,8 @@ function App() {
                   animarModal = {animarModal}
                   setAnimarModal={setAnimarModal}
                   guardarGasto= { guardarGasto }
-<<<<<<< HEAD
-                  gastoEditar={gastoEditar}
-=======
                   gastoEditar = { gastoEditar }
                   setGastoEditar = { setGastoEditar }
->>>>>>> fdad82af2f8aa7f35331fadc0119fa9cbb8ece11
                   />
       }
 
