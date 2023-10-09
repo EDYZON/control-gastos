@@ -16,3 +16,6 @@
 
 #Clase 128.- Colocar los gastos en LocaStorage
 -En esta clase se colocan todos los gastos en localstorage para que vallan quedando en memoria y al recargar la pagina estos valores no se pierdan.
+
+#Clase 129.- Creando un filtro de categorías de gastos.
+-En esta clase se incorpora un formulario cuya función principal es filtrar los tipos de gastos, se incorpora el componente filtro y se hace la importación en app.

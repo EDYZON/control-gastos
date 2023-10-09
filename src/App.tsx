@@ -3,7 +3,7 @@ import Header from './components/Header'
 import IconoNuevoGasto from './img/nuevo-gasto.svg'
 import Modal from './components/Modal'
 import ListadoGastos from './components/ListadoGastos'
-//import generarId from './helpers/inde'
+import Filtros from './components/Filtros'
 
 function App() {
   const [gastos,setGastos] = useState(
@@ -16,6 +16,7 @@ function App() {
   const [modal,setModal] = useState(false)
   const [animarModal,setAnimarModal] = useState(false)
   const [gastoEditar,setGastoEditar] = useState({})
+  const [filtro,setFiltro] = useState('')
 
   
   const generarId = () =>{
@@ -37,6 +38,12 @@ function App() {
   useEffect(()=>{
      localStorage.setItem('gastos',JSON.stringify(gastos) ?? []);
   },[gastos])
+
+  useEffect(()=>{
+   if(filtro){
+    console.log('filtrando...',filtro)
+   }
+  },[filtro])
   
   useEffect(()=>{
    const presupuestoLS = Number(localStorage.getItem('presupuesto') ?? 0); 
@@ -105,6 +112,10 @@ function App() {
       {isValidPresupuesto &&(
         <>
         <main>
+        <Filtros
+         filtro = {filtro}
+         setFiltro = {setFiltro}
+        />
          <ListadoGastos 
            gastos = {gastos} 
            setGastoEditar = {setGastoEditar}
