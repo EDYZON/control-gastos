@@ -19,3 +19,6 @@
 
 #Clase 129.- Creando un filtro de categorías de gastos.
 -En esta clase se incorpora un formulario cuya función principal es filtrar los tipos de gastos, se incorpora el componente filtro y se hace la importación en app.
+
+#Clase 130.- Colocando gastos filtrados en el state
+-En esta clase se programa el metodo para filtrar los elementos actuales de un array de gastos por concepto, se hacen uso de los hooks use state para ir almacenando las variables temporales.

@@ -17,6 +17,7 @@ function App() {
   const [animarModal,setAnimarModal] = useState(false)
   const [gastoEditar,setGastoEditar] = useState({})
   const [filtro,setFiltro] = useState('')
+  const [gastosFiltrados,setGastosFiltrados] = useState([])
 
   
   const generarId = () =>{
@@ -41,7 +42,8 @@ function App() {
 
   useEffect(()=>{
    if(filtro){
-    console.log('filtrando...',filtro)
+    const gastosFiltrados = gastos.filter( gasto => gasto.categoria === filtro);
+    setGastosFiltrados(gastosFiltrados);
    }
   },[filtro])
   
