@@ -13,3 +13,6 @@
 
 #Clase 127.- Colocar el presupuesto en LocalStorage
 -En esta clase se realizo la programación de la variable local presupuesto  en una variable local storage con la finalidad de retener el valor de la variable cada vez que se recarga la página.
+
+#Clase 128.- Colocar los gastos en LocaStorage
+-En esta clase se colocan todos los gastos en localstorage para que vallan quedando en memoria y al recargar la pagina estos valores no se pierdan.
