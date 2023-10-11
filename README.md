@@ -22,3 +22,6 @@
 
 #Clase 130.- Colocando gastos filtrados en el state
 -En esta clase se programa el metodo para filtrar los elementos actuales de un array de gastos por concepto, se hacen uso de los hooks use state para ir almacenando las variables temporales.
+
+#Clase 131.- Mostrando Gastos filtrados
+En esta clase se programa el código para renderizar los gastos realizados en función de si se activo el filtrado o no.
