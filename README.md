@@ -25,3 +25,6 @@
 
 #Clase 131.- Mostrando Gastos filtrados
 En esta clase se programa el código para renderizar los gastos realizados en función de si se activo el filtrado o no.
+
+#Clase 132.- Cambiando la apariencia del presupuesto disponible si ya fue agotado.
+En esta clase se implemento la codificación que colorea en color rojo cuando el presupuesto se ha salido del limite permitido.

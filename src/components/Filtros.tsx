@@ -12,6 +12,7 @@ const Filtros = ({filtro,setFiltro}) =>{
               onChange={e =>{
                 setFiltro(e.target.value)
               }}
+              
               >
               <option value="">-- Seleccione --</option>
                           <option value="ahorro">Ahorro</option>
