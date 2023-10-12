@@ -28,3 +28,8 @@ En esta clase se programa el código para renderizar los gastos realizados en fu
 
 #Clase 132.- Cambiando la apariencia del presupuesto disponible si ya fue agotado.
 En esta clase se implemento la codificación que colorea en color rojo cuando el presupuesto se ha salido del limite permitido.
+
+#Clase 133.- Añadiendo un botón para reiniciar la app.
+En esta clase se añadio la funcionalidad de resetear la app, se hicieron modificaciones en los componentes app, header y control presupuestos, las variables que se resetearon fueron setGastos, setPresupuesto y setIsValidPresupuesto cuando se oprime el boton de resetar.
+
+Esta es la conclusión de este proyecto.
